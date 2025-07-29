@@ -40,18 +40,18 @@ Crea un enlace simbólico desde el directorio de almacenamiento al directorio p�
 ### Pasos para la Configuración
 
 1. **Preparación del Entorno**
-   - Asegúrate de que tu aplicación Laravel esté en el directorio `/home/myuser/laravel`
-   - Los archivos públicos deben estar en `/home/myuser/public_html`
-   - Copia el script `autoconfig.php` a la carpeta `/home/myuser/public_html`
-   - Actualiza el usuario del sistema en `autoconfig.php` si es necesario
+   - Asegúrate de que tu aplicación Laravel esté en el directorio `/home/myuser/laravel` o donde se despliega la app.
+   - Los archivos públicos deben estar en `/home/myuser/public_html` o donde se despliega la carpeta public de la app.
+   - Copia el script `autoconfig.php` a la carpeta `/home/myuser/public_html` o donde se despliega la carpeta public de la app.
+   - Actualiza el usuario del sistema en `config.php` si es necesario
 
    Ejemplo de configuración:
    ```php
-   $config = [
-       "carpeta_laravel" => "laravel", // Nombre de la carpeta de la app laravel
-       "carpeta_public" => "public_html", // Carpeta donde se copio contenido de public del proyecto laravel.
-       "usuario_home" => "myuser", // Usuario del home
-   ];
+    return [
+        'carpeta_laravel' => 'laravel',      // Nombre de la carpeta de la app Laravel
+        'carpeta_public' => 'public_html',   // Carpeta donde se copió el contenido de public/
+        'usuario_home' => 'myuser',          // Usuario del sistema donde se despliega
+    ];
    ```
 
 2. **Configuración Inicial**
@@ -84,21 +84,21 @@ Crea un enlace simbólico desde el directorio de almacenamiento al directorio p�
    http://localhost/storage_link.php
    ```
 
-## ⚠️ Importante de Seguridad
+## Importante de Seguridad
 
 **ELIMINA ESTOS ARCHIVOS DEL SERVIDOR UNA VEZ COMPLETADA LA CONFIGURACIÓN**
 
 Estos scripts contienen información sensible y no deben permanecer en el servidor después de su uso en producción.
 
-## 🔍 Verificación
+## Verificación
 
 Después de ejecutar los scripts, verifica que:
 - Las migraciones se hayan ejecutado correctamente
 - El enlace simbólico de almacenamiento funcione
 - La aplicación sea accesible y funcione como se espera
 
-## 📝 Notas Adicionales
+## Notas Adicionales
 
 - Asegúrate de tener permisos de escritura en los directorios necesarios
 - Revisa los logs de Laravel si encuentras algún problema
-- Personaliza los valores en `autoconfig.php` según tu configuración de servidor
+- Personaliza los valores en `config.php` según tu configuración de servidor
