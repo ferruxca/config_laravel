@@ -1,3 +1,7 @@
+### Seguridad
+⚠️ **ADVERTENCIA IMPORTANTE**:
+Este script tiene acceso completo a tu aplicación Laravel. Por seguridad: hay que eliminarlo de su sistema de producción.
+
 # Configuración Inicial de Servidor Laravel
 
 Este repositorio contiene un script de autoconfiguración automatizado para desplegar una aplicación Laravel en un servidor.
@@ -8,13 +12,8 @@ Este script fué creado con la idea de automatizar el despliegue de una app lara
 
 > En entornos de producción se recomienda eliminar los archivos `autoconfig.php` una vez completada la configuración.
 
-## Archivos Principales
-
-> `autoconfig.php`
-
 ### Descripción
-
-> Este script PHP proporciona una interfaz web para ejecutar operaciones comunes de configuración y mantenimiento en proyectos Laravel. Está diseñado para facilitar las tareas de despliegue y mantenimiento, especialmente en entornos de desarrollo y staging.
+Este script PHP proporciona una interfaz web para ejecutar operaciones comunes de configuración y mantenimiento en proyectos Laravel. Está diseñado para facilitar las tareas de despliegue y mantenimiento, especialmente en entornos de desarrollo y staging.
 
 ### Características principales:
 
@@ -35,7 +34,7 @@ Este script fué creado con la idea de automatizar el despliegue de una app lara
 
 ### Instalación
 
-1. Copia el archivo `autoconfig.php` en la raíz de tu proyecto Laravel
+1. Copia el archivo `autoconfig.php` a la carpeta pública de tu proyecto Laravel
 2. Asegúrate de que el archivo tenga permisos de ejecución adecuados
 
 ### Uso
@@ -89,9 +88,3 @@ El script presenta una interfaz web con las siguientes secciones:
 - **migrate:fresh**: Elimina todas las tablas y vuelve a migrar
 - **migrate:refresh**: Resetea y vuelve a migrar
 - **migrate:rollback**: Revierte la última migración
-
-### Seguridad
-
-⚠️ **ADVERTENCIA IMPORTANTE**:
-
-Este script tiene acceso completo a tu aplicación Laravel. Por seguridad:
