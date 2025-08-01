@@ -1,104 +1,97 @@
 # Configuración Inicial de Servidor Laravel
 
-Este repositorio contiene scripts de configuración automatizados para desplegar una aplicación Laravel en un servidor.
+Este repositorio contiene un script de autoconfiguración automatizado para desplegar una aplicación Laravel en un servidor.
 
 > Desarrollado por Jesús Ferruzca Anaya
 
-Estos script fueron creados con la idea de automatizar el despliegue de una app laravel en producción en entornos donde no se tiene acceso a la consola del servidor vía SSH.
+Este script fué creado con la idea de automatizar el despliegue de una app laravel en producción en entornos donde no se tiene acceso a la consola del servidor vía SSH.
 
-> En entornos de producción se recomienda eliminar los archivos `autoconfig.php`, `config_session.php` y `storage_link.php` una vez completada la configuración.
+> En entornos de producción se recomienda eliminar los archivos `autoconfig.php` una vez completada la configuración.
 
-## 📋 Archivos Principales
+## Archivos Principales
 
-### 1. `autoconfig.php`
-El script principal que automatiza la configuración inicial de la aplicación Laravel:
-- Configura el AppServiceProvider con la longitud de cadena predeterminada
-- Limpia las cachés de configuración, vistas y rutas
-- Genera una nueva clave de aplicación
-- Ejecuta migraciones con seeders
-- Optimiza la aplicación almacenando en caché configuraciones, rutas y vistas
-- Crea un enlace simbólico para el almacenamiento
-- Verifica el estado del sistema
+> `autoconfig.php`
 
-### 2. `config_session.php`
-Configura el sistema de sesiones de Laravel:
-- Establece el controlador de sesión a 'database'
-- Crea y ejecuta migraciones para la tabla de sesiones
-- Verifica la configuración de sesión
+### Descripción
 
-### 3. `storage_link.php`
-Crea un enlace simbólico desde el directorio de almacenamiento al directorio público.
+> Este script PHP proporciona una interfaz web para ejecutar operaciones comunes de configuración y mantenimiento en proyectos Laravel. Está diseñado para facilitar las tareas de despliegue y mantenimiento, especialmente en entornos de desarrollo y staging.
 
-## 🚀 Instrucciones de Uso
+### Características principales:
 
-### Requisitos Previos
-- Servidor con PHP 8.2 o superior
-- Composer instalado
-- Base de datos configurada
-- Aplicación Laravel desplegada en el servidor
+- **Gestión del entorno**: Cambia entre entornos local/production y modo debug
+- **Limpieza de cachés**: Clear de cachés de aplicación, configuración, vistas y rutas
+- **Optimización**: Cachear configuración, rutas y vistas
+- **Migraciones**: Ejecuta migraciones con diversas opciones (fresh, refresh, seed, etc.)
+- **Seguridad**: Generación de clave de aplicación
+- **Configuración inicial**: Configuración automática de AppServiceProvider
+- **Enlaces simbólicos**: Creación del enlace de storage en public
 
-### Pasos para la Configuración
+### Requisitos
 
-1. **Preparación del Entorno**
-   - Asegúrate de que tu aplicación Laravel esté en el directorio `/home/myuser/laravel` o donde se despliega la app.
-   - Los archivos públicos deben estar en `/home/myuser/public_html` o donde se despliega la carpeta public de la app.
-   - Copia el script `autoconfig.php` a la carpeta `/home/myuser/public_html` o donde se despliega la carpeta public de la app.
-   - Actualiza el usuario del sistema en `config.php` si es necesario
+- PHP 7.4 o superior
+- Laravel 8.x o superior
+- Permisos de escritura en los directorios del proyecto
+- Acceso a la línea de comandos (para ejecutar los comandos artisan)
 
-   Ejemplo de configuración:
-   ```php
-    return [
-        'carpeta_laravel' => 'laravel',      // Nombre de la carpeta de la app Laravel
-        'carpeta_public' => 'public_html',   // Carpeta donde se copió el contenido de public/
-        'usuario_home' => 'myuser',          // Usuario del sistema donde se despliega
-    ];
-   ```
+### Instalación
 
-2. **Configuración Inicial**
-   Si tienes acceso vía SSH ejecuta el script principal de configuración:
-   ```bash
-   php autoconfig.php
-   ```
-   Si no tienes acceso vía SSH ejecuta el script principal de configuración desde el navegador:
-   ```
-   http://localhost/autoconfig.php
-   ```
+1. Copia el archivo `autoconfig.php` en la raíz de tu proyecto Laravel
+2. Asegúrate de que el archivo tenga permisos de ejecución adecuados
 
-3. **Configuración de Sesiones**
-   Si tienes acceso vía SSH ejecuta el script principal de configuración:
-   ```bash
-   php config_session.php
-   ```
-   Si no tienes acceso vía SSH ejecuta el script principal de configuración desde el navegador:
-   ```
-   http://localhost/config_session.php
-   ```
+### Uso
 
-4. **Enlace de Almacenamiento**
-   Si tienes acceso vía SSH ejecuta el script principal de configuración:
-   ```bash
-   php storage_link.php
-   ```
-   Si no tienes acceso vía SSH ejecuta el script principal de configuración desde el navegador:
-   ```
-   http://localhost/storage_link.php
-   ```
+### Acceso al script:
 
-## Importante de Seguridad
+Accede al script a través de tu navegador web en la ruta donde lo hayas colocado, por ejemplo:
+`https://tudominio.com/autoconfig.php`
 
-**ELIMINA ESTOS ARCHIVOS DEL SERVIDOR UNA VEZ COMPLETADA LA CONFIGURACIÓN**
+### Interfaz de usuario:
 
-Estos scripts contienen información sensible y no deben permanecer en el servidor después de su uso en producción.
+El script presenta una interfaz web con las siguientes secciones:
 
-## Verificación
+1. **Configuración del Entorno**:
+   - Cambiar entre entornos local/production
+   - Activar/desactivar debug mode
+   - Opción para restaurar configuración original
 
-Después de ejecutar los scripts, verifica que:
-- Las migraciones se hayan ejecutado correctamente
-- El enlace simbólico de almacenamiento funcione
-- La aplicación sea accesible y funcione como se espera
+2. **Configuración de AppServiceProvider**:
+   - Opción para configurar automáticamente el defaultStringLength
 
-## Notas Adicionales
+3. **Enlace de Almacenamiento**:
+   - Crear enlace simbólico de storage en public
 
-- Asegúrate de tener permisos de escritura en los directorios necesarios
-- Revisa los logs de Laravel si encuentras algún problema
-- Personaliza los valores en `config.php` según tu configuración de servidor
+4. **Comandos de Limpieza y Optimización**:
+   - Clear de varios tipos de caché
+   - Cache de configuración, rutas y vistas
+
+5. **Opciones de Migración**:
+   - Variantes de migración (fresh, refresh, seed, etc.)
+
+### Proceso de ejecución:
+
+1. Selecciona las opciones deseadas
+2. Haz clic en "Ejecutar Configuración Seleccionada"
+3. El script mostrará el resultado de cada operación
+4. Revisa los mensajes de éxito/error
+
+### Opciones avanzadas
+
+### Configuración del entorno:
+
+- **APP_ENV**: Cambia entre 'local' y 'production'
+- **APP_DEBUG**: Activa/desactiva el modo debug
+- **Restaurar configuración**: Vuelve a la configuración original al finalizar
+
+### Migraciones:
+
+- **migrate**: Ejecuta migraciones pendientes
+- **migrate --seed**: Ejecuta migraciones y seeders
+- **migrate:fresh**: Elimina todas las tablas y vuelve a migrar
+- **migrate:refresh**: Resetea y vuelve a migrar
+- **migrate:rollback**: Revierte la última migración
+
+### Seguridad
+
+⚠️ **ADVERTENCIA IMPORTANTE**:
+
+Este script tiene acceso completo a tu aplicación Laravel. Por seguridad:
